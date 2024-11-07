@@ -5,7 +5,6 @@ import {
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import axios from "axios";
-
 import './App.css'
 
 const queryClient = new QueryClient();
@@ -36,7 +35,7 @@ function CurrentTime(props) {
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <h1>Hey Team! 👋</h1>
+      <h1>Hello Guys 👋... Hold on, what time is it ??</h1>
       <CurrentTime api="/api/golang/"/>
       <CurrentTime api="/api/node/"/>
       <ReactQueryDevtools initialIsOpen={false} />

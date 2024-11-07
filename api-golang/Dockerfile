@@ -21,7 +21,6 @@ FROM build-base AS dev
 # Install air for hot reload & delve for debugging
 RUN go install github.com/cosmtrek/air@latest && \
   go install github.com/go-delve/delve/cmd/dlv@latest
-
 COPY . .
 
 CMD ["air", "-c", ".air.toml"]
