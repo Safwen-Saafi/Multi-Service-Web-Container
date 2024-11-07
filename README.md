@@ -47,11 +47,21 @@ After installing the dependencies, `make run-client-react` will use vite to run 
 ![alt text](./readme-assets/image4.png)
 
 
-
 ## What is the goal of this project ?
 
-A very `simple` and `straightforward` web app to `containerize`, you'll find in each directory a `Dockerfile` with explanations of each step.
+A very `simple` and `straightforward` web app to `containerize`, with a `Dockerfile` inside each directory.
 
-The whole point of this repo is to containerize this app, include each image in a `Docker-compose` file and run the whole web app as `separate containers`.
+The whole point of this project is to containerize the app, include each image in a `Docker-compose` file and run the whole web app as `separate containers`.
 
 It's truly a great project to follow along if you're new to `Docker` and it's key concepts.
+
+
+## How to use the docker-compose ?
+
+All of the necessary commands are included in the Makefile.
+
+First of all `make compose-build` will execute the command `docker compose build` to build all of the images included in the docker-compose
+
+Then `make compose-up` will start all of the containers ( docker compose up)
+
+If you want to stop all of the containers, just run `make compose-down` ( docker compose down)
