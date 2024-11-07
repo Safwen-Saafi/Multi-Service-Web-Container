@@ -1,0 +1,65 @@
+services:
+
+  client-react-nginx:
+    image: client-react-nginx
+    build:
+      context: ./client-react
+      dockerfile: ./client-react/Dockerfile 
+    init: true
+    networks:
+      - frontend
+    ports:
+      - 80:8080
+    restart: unless-stopped
+
+  api-node:
+    image: api-node
+    build:
+      context: ./api-node  
+      dockerfile: ./api-node/Dockerfile  
+    init: true
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+
+  api-golang:
+    image: api-golang
+    build:
+      context: ./api-golang  
+      dockerfile: ./api-golang/Dockerfile  
+    init: true
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+
+  db:
+    image: postgres:15.1-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=foobarbaz
+    networks:
+      - backend
+    ports:
+      - 5432:5432
+
+volumes:
+  pgdata:
+  
+networks:
+  frontend:
+  backend:

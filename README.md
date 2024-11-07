@@ -45,3 +45,13 @@ Like `api-node`, you will first need to install the dependencies with `npm insta
 After installing the dependencies, `make run-client-react` will use vite to run the react app in development mode.
 
 ![alt text](./readme-assets/image4.png)
+
+
+
+## What is the goal of this project ?
+
+A very `simple` and `straightforward` web app to `containerize`, you'll find in each directory a `Dockerfile` with explanations of each step.
+
+The whole point of this repo is to containerize this app, include each image in a `Docker-compose` file and run the whole web app as `separate containers`.
+
+It's truly a great project to follow along if you're new to `Docker` and it's key concepts.
