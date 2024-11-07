@@ -19,11 +19,16 @@ Postgres is run in a container.
 
 `make run-postgres` will start postgres in a container and publish port 5432 from the container to your localhost.
 
+![alt text](./readme-assets/image.png)
+
 ### api-node
 
-To run the node api you will need to run `npm install` to install the dependencies.
+To run the node api you will need to run `npm install` to install the dependencies. They are already present in the package.json file so you don't need to specify them, just run the command and you are good to go.
 
 After installing the dependencies, `make run-api-node` will run the api in development mode with nodemon for restarting the app when you make source code changes.
+
+![alt text](./readme-assets/image-1.png)
+
 
 ### api-golang 
 
@@ -31,8 +36,12 @@ To run the golang api you will need to run `go mod download` to download and ins
 
 After installing the dependencies, `make run-api-golang` will build and run the api.
 
+![alt text](./readme-assets/image-2.png)
+
 ### client-react
 
 Like `api-node`, you will first need to install the dependencies with `npm install`
 
 After installing the dependencies, `make run-client-react` will use vite to run the react app in development mode.
+
+![alt text](./readme-assets/image4.png)
