@@ -21,9 +21,10 @@ app.get('/ping', async (_, res) => {
 });
 
 const server = app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Currently listening on port ${port}`);
 });
 
+// Gracefully close the server
 process.on('SIGTERM', () => {
   console.debug('SIGTERM signal received: closing HTTP server');
   server.close(() => {
