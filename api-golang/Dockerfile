@@ -2,18 +2,13 @@
 # Use separate stage for building image
 # Use debian for easier build utilities
 FROM golang:1.19-bullseye AS build-base
-
 WORKDIR /app 
-
 # Copy only files required to install dependencies (better layer caching)
 COPY go.mod go.sum ./
-
 # Use cache mount to speed up install of existing dependencies
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
   go mod download
-
-
 
 
 
@@ -22,26 +17,20 @@ FROM build-base AS dev
 RUN go install github.com/cosmtrek/air@latest && \
   go install github.com/go-delve/delve/cmd/dlv@latest
 COPY . .
-
 CMD ["air", "-c", ".air.toml"]
-
-
 
 
 
 FROM build-base AS build-production
 # Add non root user
 RUN useradd -u 1001 nonroot
-
 COPY . .
-
 # Compile healthcheck
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -tags netgo \
   -o healthcheck \
   ./healthcheck/healthcheck.go
-
 # Compile application during build rather than at runtime
 # Add flags to statically link binary
 RUN go build \
