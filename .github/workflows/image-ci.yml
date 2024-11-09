@@ -45,7 +45,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'safsaf2000/docker-multiservice-node-api'
+          image-ref: 'safsaf2000/docker-multiservice-node-api:latest'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
