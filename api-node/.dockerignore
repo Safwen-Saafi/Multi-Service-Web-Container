@@ -1,2 +1,4 @@
 node_modules
-.npm
+# ensureS that even if a local .npm cache directory exists, it won't be copied into the image.
+.npm 
+README.md

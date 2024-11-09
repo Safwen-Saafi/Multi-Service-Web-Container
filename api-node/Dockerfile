@@ -1,6 +1,6 @@
 # Pin specific version for stability
 # Use slim for reduced image size
-FROM node:19.6-bullseye-slim AS base
+FROM node:23.1-bullseye-slim AS base
 
 # Specify working directory other than /
 # This means that after this line, any commands like RUN, COPY, or CMD will be executed in the /usr/src/app directory 
@@ -9,7 +9,8 @@ WORKDIR /usr/src/app
 
 # Copy only files required to install
 # dependencies (better layer caching)
-COPY package*.json ./
+# Copies to /usr/src/app/package.json
+COPY package*.json ./      
 
 
 
@@ -45,8 +46,9 @@ USER node
 # Copy the healthcheck script
 COPY --chown=node:node ./healthcheck/ .
 
-# Copy remaining source code AFTER installing dependencies. 
-# Again, copy only the necessary files
+#This only copies:
+#/healthcheck/healthcheck.js
+#/src/db.js and index.js
 COPY --chown=node:node ./src/ .
 
 # Indicate expected port
