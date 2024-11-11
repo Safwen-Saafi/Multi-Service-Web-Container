@@ -2,6 +2,7 @@ DATABASE_URL:=postgres://postgres:foobarbaz@localhost:5432/postgres
 DEV_COMPOSE_FILE=docker-compose-dev.yml
 DEBUG_COMPOSE_FILE=docker-compose-debug.yml
 TEST_COMPOSE_FILE=docker-compose-test.yml
+PROD_COMPOSE_FILE=docker-compose-prod.yml
 
 
 .PHONY: run-postgres
@@ -34,50 +35,64 @@ run-client-react:
 		npm run dev
 
 
-### DOCKER COMPOSE COMMANDS
 
-.PHONY: compose-build
-compose-build:
-	docker compose build
-
-.PHONY: compose-up
-compose-up:
-	docker compose up
-
-.PHONY: compose-up-build
-compose-up-build:
-	docker compose up --build
-
-.PHONY: compose-down
-compose-down:
-	docker compose down
+### DOCKER COMPOSE COMMANDS DEV STAGE
 
 
-
-### DOCKER COMPOSE COMMANDS
-
-.PHONY: compose-build
+.PHONY: compose-build-dev
 compose-build:
 	docker compose -f $(DEV_COMPOSE_FILE) build
 
-.PHONY: compose-up
+
+.PHONY: compose-up-dev
 compose-up:
 	docker compose -f $(DEV_COMPOSE_FILE) up
 
-.PHONY: compose-up-build
+
+.PHONY: compose-up-build-dev
 compose-up-build:
 	docker compose -f $(DEV_COMPOSE_FILE) up --build
 
-.PHONY: compose-up-debug-build
+
+.PHONY: compose-up-debug-build-dev
 compose-up-debug-build:
 	docker compose -f $(DEV_COMPOSE_FILE) -f $(DEBUG_COMPOSE_FILE) up --build
 
-.PHONY: compose-down
+
+.PHONY: compose-down-dev
 compose-down:
 	docker compose -f $(DEV_COMPOSE_FILE) down
 
 
-###
+### DOCKER COMPOSE COMMANDS PROD STAGE
+
+
+.PHONY: compose-build-prod
+compose-build:
+	docker compose -f $(PROD_COMPOSE_FILE) build
+
+
+.PHONY: compose-up-prod
+compose-up:
+	docker compose -f $(PROD_COMPOSE_FILE) up
+
+
+.PHONY: compose-up-build-prod
+compose-up-build:
+	docker compose -f $(PROD_COMPOSE_FILE) up --build
+
+
+.PHONY: compose-up-debug-build-prod
+compose-up-debug-build:
+	docker compose -f $(PROD_COMPOSE_FILE) -f $(DEBUG_COMPOSE_FILE) up --build
+
+
+.PHONY: compose-down-prod
+compose-down:
+	docker compose -f $(PROD_COMPOSE_FILE) down
+
+
+### TESTING STAGE
 
 DOCKERCONTEXT_DIR:=./
 DOCKERFILE_DIR:=./
