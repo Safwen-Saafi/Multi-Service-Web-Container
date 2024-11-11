@@ -13,7 +13,7 @@ services:
       - type: bind
         source: ./client-react/
         target: /usr/src/app/
-        # Avoid bringing the node_modules from the host filesystem, basically rewriting the node_modules folder
+        # Avoid bringing the node_modules from the host filesystem, basically rewriting the node_modules folder to use the one inside the container
       - type: volume
         target: /usr/src/app/node_modules 
       - type: bind
@@ -85,6 +85,8 @@ services:
     ports:
       - 8080:8080
     restart: unless-stopped
+
+
   db:
     image: postgres:17.0-alpine3.19
     volumes:
@@ -95,8 +97,12 @@ services:
       - backend
     ports:
       - 5432:5432
+
+
 volumes:
   pgdata:
+
+  
 networks:
   frontend:
   backend:
