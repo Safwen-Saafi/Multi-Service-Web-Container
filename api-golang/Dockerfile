@@ -21,7 +21,7 @@ CMD ["air", "-c", ".air.toml"]
 
 
 
-FROM build-base AS build-production
+FROM build-base AS prod
 # Add non root user
 RUN useradd -u 1001 nonroot
 COPY . .

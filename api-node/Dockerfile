@@ -20,7 +20,7 @@ COPY . .
 CMD ["npm", "run", "dev"]
 
 
-FROM base as production
+FROM base as prod
 # Set NODE_ENV
 ENV NODE_ENV production
 # Install only production dependencies
