@@ -1,4 +1,4 @@
-FROM node:19.4-bullseye AS build
+FROM node:23.1-bullseye AS build
 
 # Specify working directory other than /
 WORKDIR /usr/src/app

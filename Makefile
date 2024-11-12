@@ -4,6 +4,7 @@ DEBUG_COMPOSE_FILE=docker-compose-debug.yml
 TEST_COMPOSE_FILE=docker-compose-test.yml
 PROD_COMPOSE_FILE=docker-compose-prod.yml
 
+## RUN THE WEB APP AND THE SERVICES LOCALLY ON THE HOST, NO CONTAINERS
 
 .PHONY: run-postgres
 run-postgres:

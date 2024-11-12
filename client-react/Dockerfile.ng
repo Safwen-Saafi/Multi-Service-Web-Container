@@ -13,8 +13,6 @@ COPY . .
 RUN npm run build
 
 
-
-
 # Use separate stage for deployable image
 FROM nginxinc/nginx-unprivileged:1.27.2-alpine-perl
 # Use COPY --link to avoid breaking cache if we change the second stage base image

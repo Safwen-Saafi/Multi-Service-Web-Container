@@ -13,7 +13,7 @@ services:
       - type: bind
         source: ./client-react/
         target: /usr/src/app/
-        # Avoid bringing the node_modules from the host filesystem, basically rewriting the node_modules folder to use the one inside the container
+        # Avoid bringing the node_modules from the host filesystem, basically rewriting the node_modules folder to useonly the ones inside the container
       - type: volume
         target: /usr/src/app/node_modules 
       - type: bind
